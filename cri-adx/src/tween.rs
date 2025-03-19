@@ -20,3 +20,22 @@ pub mod ffi {
     pub type criAtomExTween_Stop = fn(CriAtomExTweenHn) -> ();
     pub type criAtomExTween_Reset = fn(CriAtomExTweenHn) -> ();
 }
+
+#[repr(C)]
+#[derive(Debug)]
+pub struct Tween;
+impl Tween {
+    fn into_handle(&self) -> ffi::CriAtomExTweenHn {
+        ffi::CriAtomExTweenHn(&raw const *self as *mut u8)
+    }
+    pub fn reset(&mut self) {
+        let ptr = &raw const *unsafe { crate::globals::get_criatomextween_reset_unchecked() };
+        let criAtomExTween_Reset = unsafe { std::mem::transmute::<_, ffi::criAtomExTween_Reset>(ptr) };
+        criAtomExTween_Reset(self.into_handle())
+    }
+    pub fn stop(&mut self) {
+        let ptr = &raw const *unsafe { crate::globals::get_criatomextween_stop_unchecked() };
+        let criAtomExTween_Stop = unsafe { std::mem::transmute::<_, ffi::criAtomExTween_Stop>(ptr) };
+        criAtomExTween_Stop(self.into_handle())
+    }
+}

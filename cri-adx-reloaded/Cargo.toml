@@ -19,3 +19,7 @@ walkdir = "2.5"
 # csbindgen = "1.8"
 csbindgen = { version = "1.8", path = "../../csbindgen/csbindgen" }
 riri-mod-tools = { version = "0.1", path = "../../riri-mod-tools/riri-mod-tools" }
+
+[features]
+use_ryo = []
+default = ["use_ryo"]

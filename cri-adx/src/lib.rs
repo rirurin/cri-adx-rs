@@ -1,8 +1,12 @@
 pub mod acb;
+pub mod acf;
 pub mod atom;
 pub mod awb;
+pub mod category;
 pub mod fs;
+pub mod hca_mx;
 pub mod globals;
 pub mod player;
 pub mod three;
 pub mod tween;
+pub mod voice_pool;

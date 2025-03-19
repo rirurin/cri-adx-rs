@@ -211,6 +211,25 @@ unsafe extern "C" {
 
 #[link(name = "cri_adx_globals", kind = "raw-dylib")]
 unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_SETDATA.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_setdata(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_SETDATA. This checks to see if `set_criatomexplayer_setdata`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_setdata() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_setdata_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_setdata_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_setdata`. This assumes that CRIATOMEXPLAYER_SETDATA
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_setdata_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_setdata_mut`. This assumes that CRIATOMEXPLAYER_SETDATA
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_setdata_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
    /// Set the pointer to the memory location containing the beginning of CRIATOMEXACB_LOADACBDATA.
     /// This method must only be called once, otherwise it will panic.
     pub(crate) unsafe fn set_criatomexacb_loadacbdata(ptr: *mut u8);
@@ -301,6 +320,234 @@ unsafe extern "C" {
    /// An unchecked version of `get_criatomexacb_getcueinfobyid_mut`. This assumes that CRIATOMEXACB_GETCUEINFOBYID
     /// is set and it's initialized.
     pub(crate) unsafe fn get_criatomexacb_getcueinfobyid_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXACB_GETCUEINFOBYNAME.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexacb_getcueinfobyname(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXACB_GETCUEINFOBYNAME. This checks to see if `set_criatomexacb_getcueinfobyname`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexacb_getcueinfobyname() -> Option<& 'static u8>;
+   /// Like `get_criatomexacb_getcueinfobyname_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexacb_getcueinfobyname_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexacb_getcueinfobyname`. This assumes that CRIATOMEXACB_GETCUEINFOBYNAME
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexacb_getcueinfobyname_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexacb_getcueinfobyname_mut`. This assumes that CRIATOMEXACB_GETCUEINFOBYNAME
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexacb_getcueinfobyname_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMCONFIG_GETCATEGORYINDEXBYID.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomconfig_getcategoryindexbyid(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMCONFIG_GETCATEGORYINDEXBYID. This checks to see if `set_criatomconfig_getcategoryindexbyid`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomconfig_getcategoryindexbyid() -> Option<& 'static u8>;
+   /// Like `get_criatomconfig_getcategoryindexbyid_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomconfig_getcategoryindexbyid_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomconfig_getcategoryindexbyid`. This assumes that CRIATOMCONFIG_GETCATEGORYINDEXBYID
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomconfig_getcategoryindexbyid_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomconfig_getcategoryindexbyid_mut`. This assumes that CRIATOMCONFIG_GETCATEGORYINDEXBYID
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomconfig_getcategoryindexbyid_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_SETPANTYPE.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_setpantype(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_SETPANTYPE. This checks to see if `set_criatomexplayer_setpantype`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_setpantype() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_setpantype_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_setpantype_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_setpantype`. This assumes that CRIATOMEXPLAYER_SETPANTYPE
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_setpantype_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_setpantype_mut`. This assumes that CRIATOMEXPLAYER_SETPANTYPE
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_setpantype_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEX3DSOURCE_SETPOSITION.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomex3dsource_setposition(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEX3DSOURCE_SETPOSITION. This checks to see if `set_criatomex3dsource_setposition`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomex3dsource_setposition() -> Option<& 'static u8>;
+   /// Like `get_criatomex3dsource_setposition_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomex3dsource_setposition_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomex3dsource_setposition`. This assumes that CRIATOMEX3DSOURCE_SETPOSITION
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomex3dsource_setposition_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomex3dsource_setposition_mut`. This assumes that CRIATOMEX3DSOURCE_SETPOSITION
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomex3dsource_setposition_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_SETAISACCONTROLBYID.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_setaisaccontrolbyid(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_SETAISACCONTROLBYID. This checks to see if `set_criatomexplayer_setaisaccontrolbyid`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_setaisaccontrolbyid() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_setaisaccontrolbyid_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_setaisaccontrolbyid_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_setaisaccontrolbyid`. This assumes that CRIATOMEXPLAYER_SETAISACCONTROLBYID
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_setaisaccontrolbyid_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_setaisaccontrolbyid_mut`. This assumes that CRIATOMEXPLAYER_SETAISACCONTROLBYID
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_setaisaccontrolbyid_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXTWEEN_RESET.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomextween_reset(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXTWEEN_RESET. This checks to see if `set_criatomextween_reset`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomextween_reset() -> Option<& 'static u8>;
+   /// Like `get_criatomextween_reset_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomextween_reset_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomextween_reset`. This assumes that CRIATOMEXTWEEN_RESET
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomextween_reset_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomextween_reset_mut`. This assumes that CRIATOMEXTWEEN_RESET
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomextween_reset_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_STOPWITHOUTRELEASETIME.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_stopwithoutreleasetime(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_STOPWITHOUTRELEASETIME. This checks to see if `set_criatomexplayer_stopwithoutreleasetime`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_stopwithoutreleasetime() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_stopwithoutreleasetime_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_stopwithoutreleasetime_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_stopwithoutreleasetime`. This assumes that CRIATOMEXPLAYER_STOPWITHOUTRELEASETIME
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_stopwithoutreleasetime_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_stopwithoutreleasetime_mut`. This assumes that CRIATOMEXPLAYER_STOPWITHOUTRELEASETIME
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_stopwithoutreleasetime_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_ISPAUSED.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_ispaused(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_ISPAUSED. This checks to see if `set_criatomexplayer_ispaused`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_ispaused() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_ispaused_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_ispaused_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_ispaused`. This assumes that CRIATOMEXPLAYER_ISPAUSED
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_ispaused_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_ispaused_mut`. This assumes that CRIATOMEXPLAYER_ISPAUSED
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_ispaused_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_PAUSE.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_pause(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_PAUSE. This checks to see if `set_criatomexplayer_pause`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_pause() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_pause_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_pause_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_pause`. This assumes that CRIATOMEXPLAYER_PAUSE
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_pause_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_pause_mut`. This assumes that CRIATOMEXPLAYER_PAUSE
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_pause_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_STOP.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_stop(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_STOP. This checks to see if `set_criatomexplayer_stop`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_stop() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_stop_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_stop_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_stop`. This assumes that CRIATOMEXPLAYER_STOP
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_stop_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_stop_mut`. This assumes that CRIATOMEXPLAYER_STOP
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_stop_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXTWEEN_STOP.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomextween_stop(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXTWEEN_STOP. This checks to see if `set_criatomextween_stop`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomextween_stop() -> Option<& 'static u8>;
+   /// Like `get_criatomextween_stop_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomextween_stop_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomextween_stop`. This assumes that CRIATOMEXTWEEN_STOP
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomextween_stop_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomextween_stop_mut`. This assumes that CRIATOMEXTWEEN_STOP
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomextween_stop_unchecked_mut() -> & 'static mut u8;
+
+}
+
+#[link(name = "cri_adx_globals", kind = "raw-dylib")]
+unsafe extern "C" {
+   /// Set the pointer to the memory location containing the beginning of CRIATOMEXPLAYER_GETSTATUS.
+    /// This method must only be called once, otherwise it will panic.
+    pub(crate) unsafe fn set_criatomexplayer_getstatus(ptr: *mut u8);
+   /// Get a possible reference to CRIATOMEXPLAYER_GETSTATUS. This checks to see if `set_criatomexplayer_getstatus`
+    /// was called previously and if either you or the hooked process have allocated the instance of it.
+    pub(crate) unsafe fn get_criatomexplayer_getstatus() -> Option<& 'static u8>;
+   /// Like `get_criatomexplayer_getstatus_mut`, but a mutable reference is created instead.
+    pub(crate) unsafe fn get_criatomexplayer_getstatus_mut() -> Option<& 'static mut u8>;
+   /// An unchecked version of `get_criatomexplayer_getstatus`. This assumes that CRIATOMEXPLAYER_GETSTATUS
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_getstatus_unchecked() -> & 'static u8;
+   /// An unchecked version of `get_criatomexplayer_getstatus_mut`. This assumes that CRIATOMEXPLAYER_GETSTATUS
+    /// is set and it's initialized.
+    pub(crate) unsafe fn get_criatomexplayer_getstatus_unchecked_mut() -> & 'static mut u8;
 
 }
 

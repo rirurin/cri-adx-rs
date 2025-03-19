@@ -2,20 +2,20 @@
   "ModId": "riri.criadx","ModName": "CRI ADX Bindings","ModAuthor": "Rirurin","ModVersion": "2.26.354","ModDescription": "Wrapper functions for calling methods in Criware ADX Library","ModDll": "riri.criadx.dll","ModIcon": "Icon.png","ModR2RManagedDll32": "x86/riri.criadx.dll","ModR2RManagedDll64": "x64/riri.criadx.dll","ModNativeDll32": "","ModNativeDll64": "","PluginData": {
     "GithubDependencies": {
       "IdToConfigMap": {
-        "Reloaded.Memory.SigScan.ReloadedII": {
+        "SharedScans.Reloaded": {
           "Config": {
-            "UserName": "Reloaded-Project","RepositoryName": "Reloaded.Memory.SigScan","UseReleaseTag": false,"AssetFileName": "Mod.zip"
-          },"ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
+            "UserName": "RyoTune","RepositoryName": "SharedScans","UseReleaseTag": false,"AssetFileName": "Mod.zip"
+          },"ReleaseMetadataName": "SharedScans.Reloaded.ReleaseMetadata.json"
         },
         "reloaded.sharedlib.hooks": {
           "Config": {
             "UserName": "Sewer56","RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII","UseReleaseTag": false,"AssetFileName": "reloaded.sharedlib.hooks.zip"
           },"ReleaseMetadataName": "reloaded.sharedlib.hooks.ReleaseMetadata.json"
         },
-        "SharedScans.Reloaded": {
+        "Reloaded.Memory.SigScan.ReloadedII": {
           "Config": {
-            "UserName": "RyoTune","RepositoryName": "SharedScans","UseReleaseTag": false,"AssetFileName": "Mod.zip"
-          },"ReleaseMetadataName": "SharedScans.Reloaded.ReleaseMetadata.json"
+            "UserName": "Reloaded-Project","RepositoryName": "Reloaded.Memory.SigScan","UseReleaseTag": false,"AssetFileName": "Mod.zip"
+          },"ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
         }
       }
     },"GithubRelease": {
