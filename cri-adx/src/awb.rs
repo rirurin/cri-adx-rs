@@ -52,7 +52,7 @@ impl Awb {
         path: &str,
         work: &[u8]
     ) -> &'static Self {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomawb_loadtoc_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomawb_loadtoc_unchecked() };
         let criAtomAwb_LoadToc = unsafe { std::mem::transmute::<_, ffi::criAtomAwb_LoadToc>(ptr) };
         let handle = criAtomAwb_LoadToc(binder.into_handle(), path.as_ptr() as *const c_char, work.as_ptr() as *mut c_void, work.len() as i32);
         unsafe { &mut *(handle.0 as *mut Self) }

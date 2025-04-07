@@ -18,10 +18,11 @@ pub mod ffi {
     #[repr(C)]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
     pub struct CriAtomExPlaybackId(u32);
+    const CRIATOMEX_INVALID_PLAYBACK_ID: u32 = u32::MAX;
     impl CriAtomExPlaybackId {
         pub fn get_id(&self) -> u32 { self.0 }
-        // CRIATOMEX_INVALID_PLAYBACK_ID
-        pub fn is_invalid(&self) -> bool { self.0 == u32::MAX }
+        pub fn is_invalid(&self) -> bool { self.0 == CRIATOMEX_INVALID_PLAYBACK_ID }
+        pub fn set_invalid(&mut self) { self.0 = CRIATOMEX_INVALID_PLAYBACK_ID }
     }
 
     #[repr(u32)]
@@ -299,7 +300,7 @@ pub mod ffi {
     pub type criAtomExPlayer_ClearSelectorLabels = fn(CriAtomExPlayerHn);
     
 }
-use std::ffi::c_void;
+use std::ffi::{ c_char, c_void };
 
 #[repr(C)]
 #[derive(Debug)]
@@ -310,7 +311,7 @@ impl AtomExPlayer {
         config: *mut u8,
         work: &[u8],
     ) -> &'static Self {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_create_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_create_unchecked() };
         let criAtomExPlayer_Create = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_Create>(ptr) };
         let handle = criAtomExPlayer_Create(
             config as *const ffi::CriAtomExPlayerConfig,
@@ -325,88 +326,102 @@ impl AtomExPlayer {
     }
 
     pub fn start(&mut self) -> ffi::CriAtomExPlaybackId {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_start_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_start_unchecked() };
         let criAtomExPlayer_Start = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_Start>(ptr) };
         criAtomExPlayer_Start(self.into_handle())
     }
     pub fn set_format(&mut self, format: crate::atom::ffi::CriAtomFormat) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setformat_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setformat_unchecked() };
         let criAtomExPlayer_SetFormat = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetFormat>(ptr) };
         criAtomExPlayer_SetFormat(self.into_handle(), format);
     }
     pub fn set_num_channels(&mut self, channels: i32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setformat_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setformat_unchecked() };
         let criAtomExPlayer_SetNumChannels = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetNumChannels>(ptr) };
         criAtomExPlayer_SetNumChannels(self.into_handle(), channels);
     }
     pub fn set_sample_rate(&mut self, sample_rate: i32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setsamplingrate_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setsamplingrate_unchecked() };
         let criAtomExPlayer_SetSamplingRate = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetSamplingRate>(ptr) };
         criAtomExPlayer_SetSamplingRate(self.into_handle(), sample_rate);
     }
     pub fn set_category_by_id(&mut self, category: u32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setcategorybyid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setcategorybyid_unchecked() };
         let criAtomExPlayer_SetCategoryById = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetCategoryById>(ptr) };
         criAtomExPlayer_SetCategoryById(self.into_handle(), category);
     }
     pub fn set_volume(&mut self, volume: f32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setvolume_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setvolume_unchecked() };
         let criAtomExPlayer_SetVolume = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetVolume>(ptr) };
         criAtomExPlayer_SetVolume(self.into_handle(), volume);
     }
     pub fn is_paused(&self) -> bool {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_ispaused_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_ispaused_unchecked() };
         let criAtomExPlayer_IsPaused = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_IsPaused>(ptr) };
         criAtomExPlayer_IsPaused(self.into_handle())
     }
     pub fn pause(&mut self, sw: bool) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_pause_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_pause_unchecked() };
         let criAtomExPlayer_Pause = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_Pause>(ptr) };
         criAtomExPlayer_Pause(self.into_handle(), sw)
     }
     pub fn stop(&mut self) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_stop_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_stop_unchecked() };
         let criAtomExPlayer_Stop = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_Stop>(ptr) };
         criAtomExPlayer_Stop(self.into_handle())
     }
     pub fn stop_without_release_time(&mut self) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_stopwithoutreleasetime_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_stopwithoutreleasetime_unchecked() };
         let criAtomExPlayer_StopWithoutReleaseTime = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_StopWithoutReleaseTime>(ptr) };
         criAtomExPlayer_StopWithoutReleaseTime(self.into_handle())
     }
     pub fn reset_parameters(&mut self) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_resetparameters_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_resetparameters_unchecked() };
         let criAtomExPlayer_ResetParameters = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_ResetParameters>(ptr) };
         criAtomExPlayer_ResetParameters(self.into_handle())
     }
     pub fn set_file(&mut self, binder: &crate::fs::Binder, path: &str) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setfile_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setfile_unchecked() };
         let criAtomExPlayer_SetFile = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetFile>(ptr) };
         criAtomExPlayer_SetFile(self.into_handle(), binder.into_handle(), path.as_ptr() as *const i8)
     }
     pub fn set_cue_id(&mut self, acb: &crate::acb::Acb, cue_id: i32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setcueid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setcueid_unchecked() };
         let criAtomExPlayer_SetCueId = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetCueId>(ptr) };
         criAtomExPlayer_SetCueId(self.into_handle(), acb.into_handle(), cue_id)
     }
     pub fn set_wave_id(&mut self, awb: &crate::awb::Awb, wave_id: i32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setcueid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setcueid_unchecked() };
         let criAtomExPlayer_SetWaveId = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetWaveId>(ptr) };
         criAtomExPlayer_SetWaveId(self.into_handle(), awb.into_handle(), wave_id)
     }
     pub fn set_pan_type(&mut self, pan_type: ffi::CriAtomExPanType) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setpantype_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setpantype_unchecked() };
         let criAtomExPlayer_SetPanType = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetPanType>(ptr) };
         criAtomExPlayer_SetPanType(self.into_handle(), pan_type)
     }
     pub fn set_aisac_control_by_id(&mut self, control_id: u32, control_value: f32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setaisaccontrolbyid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setaisaccontrolbyid_unchecked() };
         let criAtomExPlayer_SetAisacControlById = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetAisacControlById>(ptr) };
         criAtomExPlayer_SetAisacControlById(self.into_handle(), control_id, control_value)
     }
     pub fn get_status(&self) -> ffi::CriAtomExPlayerStatus {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_getstatus_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_getstatus_unchecked() };
         let criAtomExPlayer_GetStatus = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_GetStatus>(ptr) };
-        criAtomExPlayer_GetStatus(self.into_handle())
+        criAtomExPlayer_GetStatus(self.into_handle()) 
     }
+    pub fn is_playing(&self) -> bool {
+        self.get_status() == ffi::CriAtomExPlayerStatus::CRIATOMEXPLAYER_STATUS_PLAYING
+        || self.get_status() == ffi::CriAtomExPlayerStatus::CRIATOMEXPLAYER_STATUS_PREP
+    }
+    pub fn set_aisac_control_by_name(&mut self, control_name: &str, control_value: f32) {
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setaisaccontrolbyname_unchecked() };
+        let criAtomExPlayer_SetAisacControlByName = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetAisacControlByName>(ptr) };
+        criAtomExPlayer_SetAisacControlByName(self.into_handle(), control_name.as_ptr() as *const c_char, control_value)
+    }
+    // pub fn limit_loop_count(&mut self, limit: u32) {
+        // let ptr = unsafe { &raw const *crate::globals::get_criatomexplayer_setaisaccontrolbyname_unchecked() };
+        // let criAtomExPlayer_SetAisacControlByName = unsafe { std::mem::transmute::<_, ffi::criAtomExPlayer_SetAisacControlByName>(ptr) };
+        // criAtomExPlayer_SetAisacControlByName(self.into_handle(), control_name.as_ptr() as *const c_char, control_value)
+    // }
 }

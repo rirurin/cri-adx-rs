@@ -115,7 +115,7 @@ pub mod ffi {
 }
 
 use std::{
-    ffi::c_void,
+    ffi::{ c_char, c_void },
     mem::MaybeUninit
 };
 
@@ -133,7 +133,7 @@ impl Acb {
         awb_path: &str, 
         work: &[u8]
     ) -> &'static Self {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexplayer_setcueid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexacb_loadacbdata_unchecked() };
         let criAtomExAcb_LoadAcbData = unsafe { std::mem::transmute::<_, ffi::criAtomExAcb_LoadAcbData>(ptr) };
         let handle = criAtomExAcb_LoadAcbData(
             acb_data.as_ptr() as *mut c_void, 
@@ -147,10 +147,21 @@ impl Acb {
     }
 
     pub fn get_cue_info_by_id(&self, id: i32) -> Option<ffi::CriAtomExCueInfo> {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexacb_getcueinfobyid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexacb_getcueinfobyid_unchecked() };
         let criAtomExAcb_GetCueInfoById = unsafe { std::mem::transmute::<_, ffi::criAtomExAcb_GetCueInfoById>(ptr) };
         let mut result: MaybeUninit<ffi::CriAtomExCueInfo> = MaybeUninit::uninit();
         match criAtomExAcb_GetCueInfoById(self.into_handle(), id, result.as_mut_ptr()) {
+            true => Some(unsafe { result.assume_init() }),
+            false => None
+        }
+    }
+
+
+    pub fn get_cue_info_by_name(&self, name: &str) -> Option<ffi::CriAtomExCueInfo> {
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexacb_getcueinfobyname_unchecked() };
+        let criAtomExAcb_GetCueInfoByName = unsafe { std::mem::transmute::<_, ffi::criAtomExAcb_GetCueInfoByName>(ptr) };
+        let mut result: MaybeUninit<ffi::CriAtomExCueInfo> = MaybeUninit::uninit();
+        match criAtomExAcb_GetCueInfoByName(self.into_handle(), name.as_ptr() as *const c_char, result.as_mut_ptr()) {
             true => Some(unsafe { result.assume_init() }),
             false => None
         }

@@ -29,12 +29,12 @@ impl Tween {
         ffi::CriAtomExTweenHn(&raw const *self as *mut u8)
     }
     pub fn reset(&mut self) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomextween_reset_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomextween_reset_unchecked() };
         let criAtomExTween_Reset = unsafe { std::mem::transmute::<_, ffi::criAtomExTween_Reset>(ptr) };
         criAtomExTween_Reset(self.into_handle())
     }
     pub fn stop(&mut self) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomextween_stop_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomextween_stop_unchecked() };
         let criAtomExTween_Stop = unsafe { std::mem::transmute::<_, ffi::criAtomExTween_Stop>(ptr) };
         criAtomExTween_Stop(self.into_handle())
     }

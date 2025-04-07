@@ -58,12 +58,12 @@ pub mod ffi {
 pub struct Category;
 impl Category {
     pub fn set_volume_by_id(id: u32, volume: f32) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexcategory_setvolumebyid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexcategory_setvolumebyid_unchecked() };
         let criAtomExCategory_SetVolumeById = unsafe { std::mem::transmute::<_, ffi::criAtomExCategory_SetVolumeById>(ptr) };
         criAtomExCategory_SetVolumeById(id, volume)
     }
     pub fn get_volume_by_id(id: u32) -> f32 {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomexcategory_getvolumebyid_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomexcategory_getvolumebyid_unchecked() };
         let criAtomExCategory_GetVolumeById = unsafe { std::mem::transmute::<_, ffi::criAtomExCategory_GetVolumeById>(ptr) };
         criAtomExCategory_GetVolumeById(id)
     }

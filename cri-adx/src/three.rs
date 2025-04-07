@@ -74,7 +74,7 @@ impl Source3d {
     }
 
     pub fn set_position(&self, position: glam::Vec3) {
-        let ptr = &raw const *unsafe { crate::globals::get_criatomex3dsource_setposition_unchecked() };
+        let ptr = unsafe { &raw const *crate::globals::get_criatomex3dsource_setposition_unchecked() };
         let criAtomEx3dSource_SetPosition = unsafe { std::mem::transmute::<_, ffi::criAtomEx3dSource_SetPosition>(ptr) };
         criAtomEx3dSource_SetPosition(self.into_handle(), &raw const position as *const f32)
     }
