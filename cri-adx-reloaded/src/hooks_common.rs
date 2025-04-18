@@ -84,11 +84,18 @@ pub unsafe extern "C" fn set_criAtomExTween_Reset(ofs: usize) -> Option<NonNull<
     Some(addr)
 }
 
-#[riri_hook_static(dynamic_offset(
-    signature = "40 53 48 83 EC 30 48 89 CB 48 85 C9 75 ?? BA FD 32 76 FB",
-    resolve_type = set_criAtomExTween_Reset,
-    calling_convention = "microsoft",
-))]
+#[riri_hook_static({
+    XRD759_STEAM_102 => dynamic_offset(
+        signature = "40 53 48 83 EC 30 48 89 CB 48 85 C9 75 ?? BA FD 32 76 FB",
+        resolve_type = set_criAtomExTween_Reset,
+        calling_convention = "microsoft",
+    ),
+    _ => dynamic_offset(
+        signature = "40 53 48 83 EC 30 48 89 CB 48 85 C9 75 ?? 44 8D 41 ?? 48 8D 15 ?? ?? ?? ?? 48 83 C4 30 5B E9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 4B ??",
+        resolve_type = set_criAtomExTween_Reset,
+        calling_convention = "microsoft",
+    ),
+})]
 riri_static!(criAtomExTween_Reset, usize);
 
 // ===============

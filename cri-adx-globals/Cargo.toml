@@ -12,7 +12,7 @@ edition.workspace = true
 [dependencies]
 cri-adx = { path = "../cri-adx" }
 cri-adx-proc = { path = "../cri-adx-proc" }
-riri-mod-tools-proc = { version = "0.1", path = "../../riri-mod-tools/riri-mod-tools-proc" }
+riri-mod-tools-proc = { git = "https://github.com/rirurin/riri-mod-tools" }
 
 [build-dependencies]
 cri-adx-proc-impl = { path = "../cri-adx-proc-impl" }
