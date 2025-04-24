@@ -113,7 +113,7 @@ Split-Path $MyInvocation.MyCommand.Path | Push-Location
 [Environment]::CurrentDirectory = $PWD
 $BASE_PATH = (Get-Location).ToString();
 [System.Environment]::SetEnvironmentVariable("RUST_BACKTRACE", 1)
-[System.Environment]::SetEnvironmentVariable("RUSTFLAGS", "-C panic=abort -C lto=fat -C embed-bitcode=yes -C target_cpu=native")
+[System.Environment]::SetEnvironmentVariable("RUSTFLAGS", "-C panic=abort -C lto=fat -C embed-bitcode=yes -C target-feature=+avx2")
 
 $RELOADED_MOD_DIRECTORY = [IO.Path]::Combine((GetNonNullEnvironmentVariable -EnvVariable RELOADEDIIMODS), $global:RELOADED_ENTRYPOINT)
 
