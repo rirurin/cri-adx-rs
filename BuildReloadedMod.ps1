@@ -75,8 +75,8 @@ function BuildRustCrate {
         [string] $BuildStdFeatures,
         [string] $CrateType
     )
-    $Profile = if ($IsDebug) { "--profile=release-debug" } else { "--profile=release" }
-    cargo +nightly rustc --lib $Profile -Z build-std=$BuildStd -Z build-std-features=$BuildStdFeatures --crate-type $CrateType --target $global:TARGET
+    $RustProfile = if ($IsDebug) { "--profile=release-debug" } else { "--profile=release" }
+    cargo +nightly rustc --lib $RustProfile -Z build-std=$BuildStd -Z build-std-features=$BuildStdFeatures --crate-type $CrateType --target $global:TARGET
     if (!$?) {
         Write-Error "Failed to build the Rust crate ${FriendlyName}"
     }
@@ -126,6 +126,11 @@ $RELOADED_GLB = ([IO.Path]::Combine($BASE_PATH, $global:RELOADED_CRATE, "src", "
 BuildRustCrate -FriendlyName $global:GFD_GLOBALS_CRATE -BuildStd "std,panic_abort" -BuildStdFeatures "panic_immediate_abort" -CrateType "cdylib"
 Copy-Item ([IO.Path]::Combine((Get-Location).ToString(), "middata", "self.rs")) -Destination $GLOBAL_FILE -Force
 Copy-Item ([IO.Path]::Combine((Get-Location).ToString(), "middata", "ext.rs")) -Destination $RELOADED_GLB -Force
+
+# create riri_hook folder if it doesn't already exist
+GoToFolder -Path ([IO.Path]::Combine($BASE_PATH, $global:RELOADED_ENTRYPOINT))
+if (Test-Path -Path ([IO.Path]::Combine((Get-Location).ToString(), "riri_hook"))) {}
+else { New-Item -ItemType Directory -Force -Path "riri_hook" }
 
 # build OpenGFD Reloaded project (Rust portion)
 GoToFolder -Path ([IO.Path]::Combine($BASE_PATH, $global:RELOADED_CRATE))
