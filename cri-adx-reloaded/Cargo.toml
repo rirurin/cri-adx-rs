@@ -17,7 +17,7 @@ riri-mod-tools-rt = { git = "https://github.com/rirurin/riri-mod-tools" }
 toml = "0.8"
 walkdir = "2.5"
 # csbindgen = "1.8"
-csbindgen = { version = "1.8", path = "../../csbindgen/csbindgen" }
+csbindgen = { git = "https://github.com/rirurin/csbindgen", branch = "riri-mod-tools" }
 riri-mod-tools = { git = "https://github.com/rirurin/riri-mod-tools" }
 
 [features]
