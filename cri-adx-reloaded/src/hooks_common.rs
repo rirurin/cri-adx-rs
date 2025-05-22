@@ -90,6 +90,11 @@ pub unsafe extern "C" fn set_criAtomExTween_Reset(ofs: usize) -> Option<NonNull<
         resolve_type = set_criAtomExTween_Reset,
         calling_convention = "microsoft",
     ),
+    XRD759_STEAM_1013 => dynamic_offset(
+        signature = "40 53 48 83 EC 30 48 89 CB 48 85 C9 75 ?? BA DA BE A4 B2",
+        resolve_type = set_criAtomExTween_Reset,
+        calling_convention = "microsoft",
+    ),
     _ => dynamic_offset(
         signature = "40 53 48 83 EC 30 48 89 CB 48 85 C9 75 ?? 44 8D 41 ?? 48 8D 15 ?? ?? ?? ?? 48 83 C4 30 5B E9 ?? ?? ?? ?? E8 ?? ?? ?? ?? 8B 4B ??",
         resolve_type = set_criAtomExTween_Reset,
