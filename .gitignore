@@ -11,3 +11,5 @@
 /*/middata/
 *.g.cs
 .cargo/
+
+.idea/*

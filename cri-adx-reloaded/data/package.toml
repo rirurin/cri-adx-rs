@@ -11,7 +11,7 @@ ClientSide = false
 
 Icon = "icon.jxl"
 Reloaded2Icon = "Icon.png"
-SupportedGames = [ "metaphorrefantazio", "metaphor.exe" ]
+SupportedGames = [ "metaphorrefantazio", "metaphor.exe", "persona5royal", "p5r.exe" ]
 
 [CargoImport]
 Summary = true
