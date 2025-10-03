@@ -1,8 +1,10 @@
+# Rust build files
 /target
 /Cargo.lock
 /*/target
 /*/Cargo.lock
 
+# C# Visual Studio projects (common)
 /*/obj
 /*/riri_hook
 .vs/
@@ -12,4 +14,16 @@
 *.g.cs
 .cargo/
 
-.idea/*
+# Build script 
+/buildscript/*/bin
+/buildscript/*/obj
+
+# Jetbrains IDE
+**/.idea/*
+
+# See sample script in SetEnv.ps1
+/SetEnv.local.ps1
+/env.local.yaml
+
+# Reloaded-II publish script
+/Publish/*

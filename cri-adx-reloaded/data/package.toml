@@ -59,6 +59,14 @@ UserName = "RyoTune"
 RepositoryName = "SharedScans"
 
 [[R2Dependencies]]
+Id = "Ryo.Reloaded"
+HasInterface = true
+[R2Dependencies.UpdateSourceData]
+[R2Dependencies.UpdateSourceData.Github]
+UserName = "RyoTune"
+RepositoryName = "Ryo"
+
+[[R2Dependencies]]
 Id = "riri.modruntime"
 
 [HookSettings]

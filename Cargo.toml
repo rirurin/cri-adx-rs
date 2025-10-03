@@ -17,7 +17,7 @@ repository = "https://github.com/rirurin/cri-adx-rs"
 license-file = "LICENSE"
 edition = "2021"
 
-# Optimized Release Build
+# Optimized Release Build, all the optimizations!!
 [profile.release]
 codegen-units = 1
 lto = true
@@ -28,10 +28,21 @@ strip = true  # Automatically strip symbols from the binary.
 inherits = "release"
 debug = true # Allow us to debug using LLDB
 
-[patch."https://github.com/rirurin/csbindgen"]
-csbindgen = { path = "../csbindgen/csbindgen" }
+# Slow Debug, for fast iteration
+[profile.slow-debug]
+inherits = "release"
+debug = true
+lto = "thin"
+# lto = false
+incremental = true
+codegen-units = 64
 
-[patch."https://github.com/rirurin/riri-mod-tools"]
-riri-mod-tools-proc = { path = "../riri-mod-tools/riri-mod-tools-proc" }
-riri-mod-tools-rt = { path = "../riri-mod-tools/riri-mod-tools-rt" }
-riri-mod-tools = { path = "../riri-mod-tools/riri-mod-tools" }
+# For Rirurin: Uncomment the patches when in active development!
+
+# [patch."https://github.com/rirurin/csbindgen"]
+# csbindgen = { path = "../csbindgen/csbindgen" }
+
+# [patch."https://github.com/rirurin/riri-mod-tools"]
+# riri-mod-tools-proc = { path = "../riri-mod-tools/riri-mod-tools-proc" }
+# riri-mod-tools-rt = { path = "../riri-mod-tools/riri-mod-tools-rt" }
+# riri-mod-tools = { path = "../riri-mod-tools/riri-mod-tools" }

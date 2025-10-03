@@ -2,20 +2,25 @@
   "ModId": "riri.criadx","ModName": "CRI ADX Bindings","ModAuthor": "Rirurin","ModVersion": "0.1.0","ModDescription": "Wrapper functions for calling methods in Criware ADX Library","ModDll": "riri.criadx.dll","ModIcon": "Icon.png","ModR2RManagedDll32": "x86/riri.criadx.dll","ModR2RManagedDll64": "x64/riri.criadx.dll","ModNativeDll32": "","ModNativeDll64": "","PluginData": {
     "GithubDependencies": {
       "IdToConfigMap": {
-        "SharedScans.Reloaded": {
+        "reloaded.sharedlib.hooks": {
           "Config": {
-            "UserName": "RyoTune","RepositoryName": "SharedScans","UseReleaseTag": false,"AssetFileName": "Mod.zip"
-          },"ReleaseMetadataName": "SharedScans.Reloaded.ReleaseMetadata.json"
+            "UserName": "Sewer56","RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII","UseReleaseTag": false,"AssetFileName": "reloaded.sharedlib.hooks.zip"
+          },"ReleaseMetadataName": "reloaded.sharedlib.hooks.ReleaseMetadata.json"
         },
         "Reloaded.Memory.SigScan.ReloadedII": {
           "Config": {
             "UserName": "Reloaded-Project","RepositoryName": "Reloaded.Memory.SigScan","UseReleaseTag": false,"AssetFileName": "Mod.zip"
           },"ReleaseMetadataName": "Reloaded.Memory.SigScan.ReloadedII.ReleaseMetadata.json"
         },
-        "reloaded.sharedlib.hooks": {
+        "SharedScans.Reloaded": {
           "Config": {
-            "UserName": "Sewer56","RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII","UseReleaseTag": false,"AssetFileName": "reloaded.sharedlib.hooks.zip"
-          },"ReleaseMetadataName": "reloaded.sharedlib.hooks.ReleaseMetadata.json"
+            "UserName": "RyoTune","RepositoryName": "SharedScans","UseReleaseTag": false,"AssetFileName": "Mod.zip"
+          },"ReleaseMetadataName": "SharedScans.Reloaded.ReleaseMetadata.json"
+        },
+        "Ryo.Reloaded": {
+          "Config": {
+            "UserName": "RyoTune","RepositoryName": "Ryo","UseReleaseTag": false,"AssetFileName": "Mod.zip"
+          },"ReleaseMetadataName": "Ryo.Reloaded.ReleaseMetadata.json"
         }
       }
     },"GithubRelease": {
@@ -25,6 +30,7 @@
     "reloaded.sharedlib.hooks",
     "Reloaded.Memory.SigScan.ReloadedII",
     "SharedScans.Reloaded",
+    "Ryo.Reloaded",
     "riri.modruntime"
   ],"OptionalDependencies": [],"SupportedAppId": [
     "metaphorrefantazio",
