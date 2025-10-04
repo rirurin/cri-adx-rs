@@ -31,7 +31,10 @@ ItemId = 559400
 
 [UpdateSourceData.Github]
 UserName = "Rirurin"
-RepositoryName = "cri-adx"
+RepositoryName = "cri-adx-rs"
+
+[UpdateSourceData.Nuget]
+RepositoryUrls = [ "https://packages.sewer56.moe/v3/index.json" ]
 
 [[R2Dependencies]]
 Id = "reloaded.sharedlib.hooks"
@@ -68,6 +71,10 @@ RepositoryName = "Ryo"
 
 [[R2Dependencies]]
 Id = "riri.modruntime"
+[R2Dependencies.UpdateSourceData]
+[R2Dependencies.UpdateSourceData.Github]
+UserName = "rirurin"
+RepositoryName = "riri-mod-tools"
 
 [HookSettings]
 HookLibrary = "Reloaded2CSharpHooks"

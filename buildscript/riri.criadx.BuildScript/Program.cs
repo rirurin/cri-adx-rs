@@ -69,6 +69,8 @@ public class ProjectManager : ProjectManagerBase
         {
             Register(new CSharpProject(arg, Path.Combine(RootPath, "riri.criadx"))),
             Register(new RustCrate(arg, Path.Combine(RootPath, "cri-adx-reloaded"))),
+            Register(new RustCrate(arg, Path.Combine(RootPath, "cri-adx-globals"))),
+            Register(new RustCrate(arg, Path.Combine(RootPath, "cri-adx"))),
         };
     }
     public ProjectManager(ArgumentList arg, string RootPath) : base(arg, RootPath) { }
@@ -90,9 +92,25 @@ public class Executor : ExecutorBase<ArgumentList, ProjectManager>
             PublishState.Cleanup();
             PublishState.GetTools();
         }
+        var libraryCrates = new List<string>() { "cri-adx", "cri-adx-reloaded" };
         PrintInformation();
         // Create riri_hook folder if it doesn't already exist
         Directory.CreateDirectory(Path.Combine(ProjectManager["cri-adx-reloaded"].RootPath, "riri_hook"));
+        // Build Cri ADX Globals
+        if (!ArgList["SkipGlobals"].Enabled)
+        {
+            string GetGlobalBindingPath(string Package)
+            {
+                var variant = Package.Equals("cri-adx") switch { true => "self.rs", false => "ext.rs" };
+                return Path.Combine(ProjectManager["cri-adx-globals"].RootPath, "middata", variant);
+            }
+
+            ProjectManager["cri-adx-globals"].Build();
+            // Copy OpenGFD globals and functions to library crates + Reloaded crate
+            foreach (string crate in libraryCrates)
+                File.Copy(GetGlobalBindingPath(crate), Path.Combine(ProjectManager[crate].RootPath, "src/globals.rs"), true);
+        }
+        else Console.WriteLine($"Global crate compilation was skipped!");
         // Build Cri ADX Bindings (Rust portion)
         ProjectManager["cri-adx-reloaded"].Build();
         // Build Cri ADX Bindings (C# portion)
@@ -100,6 +118,16 @@ public class Executor : ExecutorBase<ArgumentList, ProjectManager>
         {
             ((CSharpProject)ProjectManager["riri.criadx"]).PublishBuildDirectory = PublishState.PublishBuildDirectory;
             ((CSharpProject)ProjectManager["riri.criadx"]).TempDirectory = PublishState.TempDirectoryBuild;
+            Directory.CreateDirectory(PublishState.PublishBuildDirectory);
+            ((RustCrate)ProjectManager["cri-adx-reloaded"]).CopyOutputArtifacts(ArgList["Debug"].Enabled, 
+                RootPath, PublishState.PublishBuildDirectory);
+            ((RustCrate)ProjectManager["cri-adx-globals"]).CopyOutputArtifacts(ArgList["Debug"].Enabled, 
+                RootPath, PublishState.PublishBuildDirectory);
+            var modFiles = Path.Combine(ProjectManager["cri-adx-reloaded"].RootPath, "data", "modfiles");
+            if (Directory.Exists(modFiles))
+            {
+                Utils.CopyDirectory(modFiles, PublishState.PublishBuildDirectory, true);
+            }
         }
         ProjectManager["riri.criadx"].Build();
         if (ArgList["Publish"].Enabled)
@@ -111,6 +139,12 @@ public class Executor : ExecutorBase<ArgumentList, ProjectManager>
             // Copy output files from target folder into Reloaded mod
             var reloadedDirectory = Path.Combine(Environment.GetEnvironmentVariable("RELOADEDIIMODS")!, "riri.criadx");
             ((RustCrate)ProjectManager["cri-adx-reloaded"]).CopyOutputArtifacts(ArgList["Debug"].Enabled, RootPath, reloadedDirectory);
+            ((RustCrate)ProjectManager["cri-adx-globals"]).CopyOutputArtifacts(ArgList["Debug"].Enabled, RootPath, reloadedDirectory);
+            var modFiles = Path.Combine(ProjectManager["cri-adx-reloaded"].RootPath, "data", "modfiles");
+            if (Directory.Exists(modFiles))
+            {
+                Utils.CopyDirectory(modFiles, reloadedDirectory, true);
+            }
         }
         PrintCompleted();
     }
